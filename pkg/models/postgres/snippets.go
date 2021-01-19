@@ -30,6 +30,7 @@ func (m *SnippetModel) Insert(title, content, expires string) (int, error) {
 		return 0, err
 	}
 	return int(id), nil
+
 }
 
 func (m *SnippetModel) Get(id int) (*models.Snippet, error) {
@@ -43,6 +44,7 @@ func (m *SnippetModel) Get(id int) (*models.Snippet, error) {
 		}
 	}
 	return s, nil
+
 }
 
 func (m *SnippetModel) Latest() ([]*models.Snippet, error) {
@@ -57,8 +59,11 @@ func (m *SnippetModel) Latest() ([]*models.Snippet, error) {
 		if err != nil {
 			return nil, err
 		}
+
 		snippets = append(snippets, s)
 	}
+
+	defer rows.Close()
 	if err = rows.Err(); err != nil {
 		return nil, err
 	}

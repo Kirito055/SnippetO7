@@ -7,10 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	postgres "se07.com/pkg/models/postgres"
+	"se07.com/pkg/models/postgres"
 )
-
-const GetById = "SELECT id, title, content, created, expires FROM snippets where id=$1 "
 
 type application struct {
 	errorLog *log.Logger
